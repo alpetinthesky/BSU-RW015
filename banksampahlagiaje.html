@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Sampah Unit RW015</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-emerald-50 font-sans pb-10">
+
+    
+    <header class="bg-emerald-600 text-white shadow-md">
+        <div class="container mx-auto px-4 py-6 flex justify-between items-center">
+            <h1 class="text-xl md:text-2xl font-bold">♻️ Bank Sampah Unit RW 015.</h1>
+            <p class="text-xs md:text-sm bg-emerald-700 px-3 py-1 rounded-full">Ubah Sampah Jadi Berkah</p>
+        </div>
+    </header>
+
+  
+    <main class="container mx-auto px-4 py-8 max-w-3xl space-y-8">
+        
+       
+        <div class="bg-white rounded-xl shadow-lg p-6">
+            <h2 class="text-lg font-semibold text-gray-800 mb-3">📊 Daftar Harga Sampah (Per Kg)</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <div class="bg-emerald-50 p-3 rounded-lg border border-emerald-200">
+                    <p class="text-sm text-gray-600">botol plastik</p>
+                    <p class="text-base font-bold text-emerald-700">Rp 3.000</p>
+                </div>
+                <div class="bg-emerald-50 p-3 rounded-lg border border-emerald-200">
+                    <p class="text-sm text-gray-600">gelas plastiks</p>
+                    <p class="text-base font-bold text-emerald-700">Rp 3.000</p>
+                </div>
+                <div class="bg-emerald-50 p-3 rounded-lg border border-emerald-200">
+                    <p class="text-sm text-gray-600">kardus</p>
+                    <p class="text-base font-bold text-emerald-700">Rp 1.000</p>
+                </div>
+                <div class="bg-emerald-50 p-3 rounded-lg border border-emerald-200">
+                    <p class="text-sm text-gray-600">Minyak Jelantah</p>
+                    <p class="text-base font-bold text-emerald-700">Rp 4.000</p>
+                </div>
+                <div class="bg-emerald-50 p-3 rounded-lg border border-emerald-200">
+                    <p class="text-sm text-gray-600">emberan</p>
+                    <p class="text-base font-bold text-emerald-700">Rp 1.000</p>
+                </div>
+                <div class="bg-emerald-50 p-3 rounded-lg border border-emerald-200">
+                    <p class="text-sm text-gray-600">kaleng</p>
+                    <p class="text-base font-bold text-emerald-700">Rp 1.300</p>
+                </div>
+                <div class="bg-emerald-50 p-3 rounded-lg border border-emerald-200">
+                    <p class="text-sm text-gray-600">galon le mineral</p>
+                    <p class="text-base font-bold text-emerald-700">Rp 3.000</p>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+            <h2 class="text-xl font-semibold text-gray-800 mb-2">Formulir Setor Sampah</h2>
+            <p class="text-gray-600 text-sm mb-6">Pilih jenis dan masukkan berat sampah Anda, estimasi saldo akan otomatis terhitung.</p>
+
+            <form id="formBankSampah" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Nama Lengkap</label>
+                    <input type="text" name="nama" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Jenis Sampah</label>
+                    <select id="jenisSampah" name="jenisSampah" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+                        <option value="">-- Pilih Jenis Sampah --</option>
+                        <option value="botol plastik" data-harga="3.000">Plastik (Rp 3.000/kg)</option>
+                        <option value="gelas plastik" data-harga="3.000">gelas plastik(Rp 3.000/kg)</option>
+                        <option value="kardus" data-harga="1.000">Kardus (Rp 1.000/kg)</option>
+                        <option value="Minyak Jelantah" data-harga="4.000">Minyak Jelantah (Rp 4.000/kg)</option>
+                        <option value="emberan" data-harga="1.000">emberan (1.000/Kg)</option>
+                        <option value="kaleng" data-harga="1.300">kaleng (1.300/Kg)</option>
+                        <option value="galon le mineral" data-harga="3.000">galon le mineral (3.000/Kg)</option>
+                    </select>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Berat (kg)</label>
+                        <input type="number" step="0.1" id="berat" name="berat" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:outline-none" placeholder="Contoh: 2.5">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Estimasi Total Harga</label>
+                        <input type="text" id="tampilTotal" readonly class="w-full px-4 py-2 bg-gray-100 border rounded-lg text-emerald-700 font-bold" value="Rp 0">
+                        <!-- Input tersembunyi untuk dikirim ke Spreadsheet -->
+                        <input type="hidden" id="hargaPerKg" name="hargaPerKg">
+                        <input type="hidden" id="totalHarga" name="totalHarga">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Nomor WhatsApp / HP</label>
+                    <input type="tel" name="noHp" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+                </div>
+
+                <button type="submit" id="btnSubmit" class="w-full bg-emerald-600 text-white font-semibold py-2.5 rounded-lg hover:bg-emerald-700 transition duration-200">
+                    Kirim Data Setoran
+                </button>
+            </form>
+
+        
+            <div id="notifikasi" class="hidden mt-4 p-4 bg-green-100 text-green-700 rounded-lg text-center font-medium">
+                Data setoran berhasil dikirim ke sistem! 🎉
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxBCM7Qgwy5YIu8-5ZOIVDalWL1-m6-NgBtFH3p0BMUqMsnkTP9RTzZMdkcP0E-mU6g/exec'; // Ganti dengan URL Apps Script Anda
+
+        const selectJenis = document.getElementById('jenisSampah');
+        const inputBerat = document.getElementById('berat');
+        const tampilTotal = document.getElementById('tampilTotal');
+        const inputHargaPerKg = document.getElementById('hargaPerKg');
+        const inputTotalHarga = document.getElementById('totalHarga');
+        
+        const form = document.getElementById('formBankSampah');
+        const btnSubmit = document.getElementById('btnSubmit');
+        const notifikasi = document.getElementById('notifikasi');
+
+        
+        function hitungTotal() {
+            const selectedOption = selectJenis.options[selectJenis.selectedIndex];
+            const harga = parseFloat(selectedOption.getAttribute('data-harga')) || 0;
+            const berat = parseFloat(inputBerat.value) || 0;
+            const total = harga * berat;
+
+            inputHargaPerKg.value = harga;
+            inputTotalHarga.value = total;
+            tampilTotal.value = 'Rp ' + total.toLocaleString('id-ID');
+        }
+
+        selectJenis.addEventListener('change', hitungTotal);
+        inputBerat.addEventListener('input', hitungTotal);
+
+        
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            btnSubmit.disabled = true;
+            btnSubmit.textContent = 'Mengirim...';
+
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => {
+                    notifikasi.classList.remove('hidden');
+                    form.reset();
+                    tampilTotal.value = 'Rp 0';
+                    btnSubmit.disabled = false;
+                    btnSubmit.textContent = 'Kirim Data Setoran';
+                    setTimeout(() => notifikasi.classList.add('hidden'), 5000);
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    alert('Gagal mengirim data, silakan coba lagi.');
+                    btnSubmit.disabled = false;
+                    btnSubmit.textContent = 'Kirim Data Setoran';
+                });
+        });
+    </script>
+</body>
+</html>
